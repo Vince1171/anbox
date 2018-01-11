@@ -115,6 +115,11 @@ anbox::cmds::SessionManager::SessionManager()
   flag(cli::make_flag(cli::Name{"no-touch-emulation"},
                       cli::Description{"Disable touch emulation applied on mouse inputs"},
                       no_touch_emulation_));
+#if defined(MIR_SUPPORT)
+  flag(cli::make_flag(cli::Name{"mir-rootless"},
+                      cli::Description{"[Mir only] Run in rootless mode"},
+                      rootless_));
+#endif
 
   action([this](const cli::Command::Context &) {
     auto trap = core::posix::trap_signals_for_process(
@@ -175,6 +180,9 @@ anbox::cmds::SessionManager::SessionManager()
 
     auto platform = platform::create(utils::get_env_value("ANBOX_PLATFORM", "sdl"),
                                      input_manager,
+                                     display_frame,
+                                     single_window_,
+                                     rootless_,
                                      platform_config);
     if (!platform)
       return EXIT_FAILURE;
