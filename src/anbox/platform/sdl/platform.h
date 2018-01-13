@@ -114,6 +114,7 @@ class Platform : public std::enable_shared_from_this<Platform>,
   void push_finger_down(int x, int y, int finger_id, std::vector<input::Event> &touch_events);
   void push_finger_up(int finger_id, std::vector<input::Event> &touch_events);
   void push_finger_motion(int x, int y, int finger_id, std::vector<input::Event> &touch_events);
+  bool video_has_been_closed_ = false;
 };
 } // namespace sdl
 } // namespace platform
