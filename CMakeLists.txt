@@ -96,6 +96,12 @@ endif()
 if (NOT BINDERFS_PATH)
   set(BINDERFS_PATH "/dev/binderfs")
 endif()
+option(ANBOX_ENABLE_WAYLAND "Enable wayland support" ON)
+if (ANBOX_ENABLE_WAYLAND)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWAYLAND_SUPPORT")
+endif()
+
+pkg_check_modules(LIBSYSTEMD libsystemd REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DEGL_NO_X11")
 
