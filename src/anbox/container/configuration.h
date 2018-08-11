@@ -27,6 +27,7 @@ namespace container {
 struct DeviceSpecification {
   uint32_t permission;
   std::string old_device_name = "";
+  std::string target_path = "";
 };
 
 struct Configuration {
