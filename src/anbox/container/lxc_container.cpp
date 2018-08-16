@@ -372,6 +372,7 @@ void LxcContainer::start(const Configuration &configuration) {
     set_config_item("lxc.console.rotate", "1");
 #endif
 
+
   setup_network();
 
 #ifdef ENABLE_SNAP_CONFINEMENT
